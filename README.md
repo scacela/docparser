@@ -32,17 +32,17 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 12. In ADW, create 2 JSON Collections named `CLASSIFICATIONDATA` and `KVEXTRACTIONDATA`, by navigating: `ADW Launchpad > JSON`
 14. In ADW, copy the Oracle RESTful Data Services (ORDS) base URL, which will enable you to interact with your JSON Collections: `ADW Launchpad > Restful Services and SODA > Click Copy`.
 15. Assign configuration variables to your Functions Application:
-    1. `**classification-json-collection-name**`: `CLASSIFICATIONDATA`
-    2. `**kvextraction-json-collection-name**`: `KVEXTRACTIONDATA`
-    3. `**db-user**`: `admin`
-    4. `**db-schema**`: `admin`
-    5. `**dbpwd-cipher**`: `(use your password for the ADMIN user in your ADW instance)`
-    6. `**ords-base-url**`: `(use the SODA URL that you copied from ADW)`
-    7. `**COMPARTMENT_OCID**`: `(use the OCID of your new compartment)`
-    8. `**NAMESPACE_NAME**`: `(use the namespace for your Object Storage buckets)`
-    9. `**INCOMING_DOCUMENTS_STORAGE_BUCKET**`: `incoming-documents`
-    10. `**CLASSIFIED_DOCUMENTS_STORAGE_BUCKET**`: `classified-documents`
-    11. `**SDK_RESULTS_STORAGE_BUCKET**`: `sdk-results-document-analysis`
+    1. **classification-json-collection-name**: `CLASSIFICATIONDATA`
+    2. **kvextraction-json-collection-name**: `KVEXTRACTIONDATA`
+    3. **db-user**: `admin`
+    4. **db-schema**: `admin`
+    5. **dbpwd-cipher**: `(use your password for the ADMIN user in your ADW instance)`
+    6. **ords-base-url**: `(use the SODA URL that you copied from ADW)`
+    7. **COMPARTMENT_OCID**: `(use the OCID of your new compartment)`
+    8. **NAMESPACE_NAME**: `(use the namespace for your Object Storage buckets)`
+    9. **INCOMING_DOCUMENTS_STORAGE_BUCKET**: `incoming-documents`
+    10. **CLASSIFIED_DOCUMENTS_STORAGE_BUCKET**: `classified-documents`
+    11. **SDK_RESULTS_STORAGE_BUCKET**: `sdk-results-document-analysis`
 16. Within your new compartment, create an Oracle Analytics Cloud (OAC) instance that will be used to connect to your ADW instance.
 
 ## End-user Flow
