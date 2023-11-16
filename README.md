@@ -36,16 +36,20 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
    fn update context registry <your region key>.ocir.io/<your tenancy namespace>/docparser
    ```
 8. Generate an authentication token and save the token to a notepad. To generate the token, navigate: `Person icon in the top-right corner of the web console > My profile > Auth tokens > Generate token`
-9. Log-in to your docker account as your OCI user:
+9. In Cloud Shell, log-in to your docker account as your OCI user:
     ```
     docker login -u '<your tenancy namespace>/<your username>' <your region key>.ocir.io
     ```
-11. On Cloud Shell, create a folder and navigate to the folder, e.g. `mkdir docparser; cd docparser`.
-12. Within the folder, create the following files with the same content as in this repo:
+11. Create a folder and navigate to the folder. For example:
+    ```
+    mkdir docparser
+    cd docparser
+    ```
+13. Within the folder, create the following files with the same content as in this repo:
     1. [func.py](./cloudfunction/func.py)
     2. [func.yaml](./cloudfunction/func.yaml)
     3. [requirements.txt](./cloudfunction/requirements.txt)
-13. Deploy your Function to your Application.
+14. From within your folder, deploy your Function to your Application.
     ```
     fn -v deploy --app doc-parser-app
     ```
