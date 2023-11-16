@@ -36,7 +36,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
    fn update context registry <your region key>.ocir.io/<your tenancy namespace>/docparser
    ```
 8. Generate an authentication token and save the token to a notepad. To generate the token, navigate: `Person icon in the top-right corner of the web console > My profile > Auth tokens > Generate token`
-9. In Cloud Shell, log-in to your docker account as your OCI user:
+9. In Cloud Shell, log-in to your docker account as your OCI user, supplying your authentication token as the password when prompted:
     ```
     docker login -u '<your tenancy namespace>/<your username>' <your region key>.ocir.io
     ```
