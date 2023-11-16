@@ -2,6 +2,8 @@
 Generate relational data and visualizations to easily analyze many documents
 
 ## Summary
+Cross-analyzing documents becomes a challenge as a company's volume of digital and digitized documents scales out. This challenge can be effectively managed with modern tools available on Oracle Cloud Infrastructure (OCI) that automate document analysis and make it easy to visually overview the content in meaningful ways.
+
 Deploy a flow that automatically classifies a document once it is loaded into Object Storage, and based on its classification type, extracts the key-value pairs from the document that are typical of its type. Then, the keys and values identified from the document are re-structured into relational data and are analytically visualized in Oracle Analytics Cloud (OAC) in an aggregation of previously loaded documents.
 
 ## Table of Contents
