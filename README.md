@@ -15,6 +15,16 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 
 ## Prerequistes
 * Your OCI user manages all-resources in a compartment
+* Your compartment has availability for the following resources:
+  * 1x Compartment
+  * 1x Policy
+  * 3x Object Storage Bucket
+  * 1x OCI Functions Application
+  * 1x OCI Function
+  * 1x Container Image Repository
+  * 1x Events Rule
+  * 1x ADW
+  * 1x OAC
 
 ## Setup Steps
 1. Within the compartment that you manage, create a new compartment, e.g. called `docparser`.
@@ -23,16 +33,16 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
   ```
   allow any-user to manage all-resources in compartment id <OCID of your new compartment> where any {request.principal.id='<OCID of your new compartment>'}
   ```
-3. Within the new compartment that you created, create 3 buckets:
-   1. `incoming-documents`
-   2. `classified-documents`
-   3. `sdk-results-document-analysis`
+3. Within the new compartment that you created, create 3 buckets named as indicated below. Ensure that the buckets Emit Object Events by checking the correspondng checkbox.
+   1. `incoming-documents`: The user uploads documents to this bucket to trigger the rest of the flow.
+   2. `classified-documents`: Documents will be copied from `incoming-documents` to this bucket, to a folder indicating the classification type associated with the document.
+   3. `sdk-results-document-analysis`: The JSON analysis from the API calls will be redirected to this bucket.
 5. Within the new compartment that you created, create an OCI Functions Application called `docparser-app`, specifying a subnet of your choice.
 6. Turn on logs for your Application, which can be used for troubleshooting.
 7. Open Cloud Shell, and establish your `fn` profile for using OCI Functions:
    > **Note:** replace &lt;placeholder values&gt; with your own values.
    ```
-   fn use context <your region key>
+   fn use context <your region identifier>
    fn update context oracle.compartment-id <OCID of your new compartment>
    fn update context oracle.image-compartment-id <OCID of your new compartment>
    fn update context registry <your region key>.ocir.io/<your tenancy namespace>/docparserrepo
