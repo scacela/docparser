@@ -30,9 +30,9 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 1. Within the compartment that you manage, create a new compartment, e.g. called `docparser`.
 2. Within the compartment that you manage, create an OCI Policy with statement:
    > **Note:** replace &lt;placeholder values&gt; with your own values.
-  ```
-  allow any-user to manage all-resources in compartment id <OCID of your new compartment> where any {request.principal.id='<OCID of your new compartment>'}
-  ```
+   ```
+   allow any-user to manage all-resources in compartment id <OCID of your new compartment> where any {request.principal.id='<OCID of your new compartment>'}
+   ```
 3. Within the new compartment that you created, create 3 buckets named as indicated below. Ensure that the buckets Emit Object Events by checking the correspondng checkbox.
    1. `incoming-documents`: The user uploads documents to this bucket to trigger the rest of the flow.
    2. `classified-documents`: Documents will be copied from `incoming-documents` to this bucket, to a folder indicating the classification type associated with the document.
