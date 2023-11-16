@@ -76,10 +76,10 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
     2. `kvextraction-json-collection-name`: `KVEXTRACTIONDATA`
     3. `db-user`: `admin`
     4. `db-schema`: `admin`
-    5. `dbpwd-cipher`: <your password for the ADMIN user in your ADW instance>
-    6. `ords-base-url`: <SODA URL that you copied from ADW>
-    7. `COMPARTMENT_OCID`: <OCID of your new compartment>
-    8. `NAMESPACE_NAME`: <namespace for your Object Storage buckets>
+    5. `dbpwd-cipher`: &lt;your password for the ADMIN user in your ADW instance&gt;
+    6. `ords-base-url`: &lt;SODA URL that you copied from ADW&gt;
+    7. `COMPARTMENT_OCID`: &lt;OCID of your new compartment&gt;
+    8. `NAMESPACE_NAME`: &lt;namespace for your Object Storage buckets&gt;
     9. `INCOMING_DOCUMENTS_STORAGE_BUCKET`: `incoming-documents`
     10. `CLASSIFIED_DOCUMENTS_STORAGE_BUCKET`: `classified-documents`
     11. `SDK_RESULTS_STORAGE_BUCKET`: `sdk-results-document-analysis`
