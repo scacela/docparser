@@ -50,8 +50,8 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 ## End-user Flow
 1. Upload document(s) into Object Storage bucket, `incoming-documents`.
 2. Navigate to ADW and run the JSON Collection for `KVEXTRACTIONDATA` and `CLASSIFICATIONDATA` to see the new JSON documents that have populated.
-3. Run the statement that creates a materialized view from the JSON Collection `KVEXTRACTIONDATA` by referring to [sql.txt](./SQL/docparser.sql).
-4. Run the select statement from [sql.txt](.SQL/docparser.sql) to see the contents of the materialized view.
+3. Run the statement that creates a materialized view from the JSON Collection `KVEXTRACTIONDATA` by referring to [docparser.sql](./SQL/docparser.sql).
+4. Run the select statement from [docparser.sql](SQL/docparser.sql) to see the contents of the materialized view.
 5. Repeat steps 3. and 4., with the JSON Collection `CLASSIFICATIONDATA` and its materialized view.
 6. Open OAC and generate a connection to your ADW instance.
 7. In OAC, create a Dataset using the materialized view, `KVEXTRACTIONDATA_MV`, e.g. called `kvextraction_dataset`.
