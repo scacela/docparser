@@ -19,7 +19,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 ## Setup Steps
 1. Within the compartment that you manage, create a new compartment, e.g. called `docparser`.
 2. Within the compartment that you manage, create an OCI Policy with statement:
-   > **Note**: replace <placeholder values> with your own values.
+   > **Note:** replace &ltplaceholder values&gt with your own values.
   ```
   allow any-user to manage all-resources in compartment id <OCID of your new compartment> where any {request.principal.id='<OCID of your new compartment>'}
   ```
@@ -30,7 +30,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 5. Within the new compartment that you created, create an OCI Functions Application called `docparser-app`, specifying a subnet of your choice.
 6. Turn on logs for your Application, which can be used for troubleshooting.
 7. Open Cloud Shell, and establish your `fn` profile for using OCI Functions:
-   > **Note**: replace <placeholder values> with your own values.
+   > **Note:** replace &ltplaceholder values&gt with your own values.
    ```
    fn use context <your region key>
    fn update context oracle.compartment-id <OCID of your new compartment>
@@ -39,7 +39,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
    ```
 9. Generate an authentication token and save the token to a notepad. To generate the token, navigate: `Person icon in the top-right corner of the web console > My profile > Auth tokens > Generate token`
 10. In Cloud Shell, log-in to your docker account as your OCI user, supplying your authentication token as the password when prompted:
-    > **Note**: replace <placeholder values> with your own values.
+    > **Note:** replace &ltplaceholder values&gt with your own values.
     ```
     docker login -u '<your tenancy namespace>/<your username>' <your region key>.ocir.io
     ```
@@ -61,18 +61,18 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 17. In ADW, create 2 JSON Collections named `CLASSIFICATIONDATA` and `KVEXTRACTIONDATA`, by navigating: `ADW Launchpad > JSON`
 18. In ADW, copy the Oracle RESTful Data Services (ORDS) base URL, which will enable you to interact with your JSON Collections: `ADW Launchpad > Restful Services and SODA > Click Copy`.
 19. Assign configuration variables to your Functions Application:
-    > **Note**: replace <placeholder values> with your own values.
-    1. **classification-json-collection-name**: `CLASSIFICATIONDATA`
-    2. **kvextraction-json-collection-name**: `KVEXTRACTIONDATA`
-    3. **db-user**: `admin`
-    4. **db-schema**: `admin`
-    5. **dbpwd-cipher**: `<your password for the ADMIN user in your ADW instance>`
-    6. **ords-base-url**: `<SODA URL that you copied from ADW>`
-    7. **COMPARTMENT_OCID**: `<OCID of your new compartment>`
-    8. **NAMESPACE_NAME**: `<namespace for your Object Storage buckets>`
-    9. **INCOMING_DOCUMENTS_STORAGE_BUCKET**: `incoming-documents`
-    10. **CLASSIFIED_DOCUMENTS_STORAGE_BUCKET**: `classified-documents`
-    11. **SDK_RESULTS_STORAGE_BUCKET**: `sdk-results-document-analysis`
+    > **Note:** replace &ltplaceholder values&gt with your own values.
+    1. **classification-json-collection-name:** `CLASSIFICATIONDATA`
+    2. **kvextraction-json-collection-name:** `KVEXTRACTIONDATA`
+    3. **db-user:** `admin`
+    4. **db-schema:** `admin`
+    5. **dbpwd-cipher:** `<your password for the ADMIN user in your ADW instance>`
+    6. **ords-base-url:** `<SODA URL that you copied from ADW>`
+    7. **COMPARTMENT_OCID:** `<OCID of your new compartment>`
+    8. **NAMESPACE_NAME:** `<namespace for your Object Storage buckets>`
+    9. **INCOMING_DOCUMENTS_STORAGE_BUCKET:** `incoming-documents`
+    10. **CLASSIFIED_DOCUMENTS_STORAGE_BUCKET:** `classified-documents`
+    11. **SDK_RESULTS_STORAGE_BUCKET:** `sdk-results-document-analysis`
 21. Within your new compartment, create an Oracle Analytics Cloud (OAC) instance that will be used to connect to your ADW instance.
 
 ## End-user Flow
