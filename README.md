@@ -72,17 +72,17 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 18. In ADW, copy the Oracle RESTful Data Services (ORDS) base URL, which will enable you to interact with your JSON Collections: `ADW Launchpad > Restful Services and SODA > Click Copy`.
 19. Assign configuration variables to your Functions Application:
     > **Note:** replace &lt;placeholder values&gt; with your own values.
-    1. **classification-json-collection-name:** `CLASSIFICATIONDATA`
-    2. **kvextraction-json-collection-name:** `KVEXTRACTIONDATA`
-    3. **db-user:** `admin`
-    4. **db-schema:** `admin`
-    5. **dbpwd-cipher:** `<your password for the ADMIN user in your ADW instance>`
-    6. **ords-base-url:** `<SODA URL that you copied from ADW>`
-    7. **COMPARTMENT_OCID:** `<OCID of your new compartment>`
-    8. **NAMESPACE_NAME:** `<namespace for your Object Storage buckets>`
-    9. **INCOMING_DOCUMENTS_STORAGE_BUCKET:** `incoming-documents`
-    10. **CLASSIFIED_DOCUMENTS_STORAGE_BUCKET:** `classified-documents`
-    11. **SDK_RESULTS_STORAGE_BUCKET:** `sdk-results-document-analysis`
+    1. `classification-json-collection-name`: `CLASSIFICATIONDATA`
+    2. `kvextraction-json-collection-name`: `KVEXTRACTIONDATA`
+    3. `db-user`: `admin`
+    4. `db-schema`: `admin`
+    5. `dbpwd-cipher`: <your password for the ADMIN user in your ADW instance>
+    6. `ords-base-url`: <SODA URL that you copied from ADW>
+    7. `COMPARTMENT_OCID`: <OCID of your new compartment>
+    8. `NAMESPACE_NAME`: <namespace for your Object Storage buckets>
+    9. `INCOMING_DOCUMENTS_STORAGE_BUCKET`: `incoming-documents`
+    10. `CLASSIFIED_DOCUMENTS_STORAGE_BUCKET`: `classified-documents`
+    11. `SDK_RESULTS_STORAGE_BUCKET`: `sdk-results-document-analysis`
 21. Within your new compartment, create an Oracle Analytics Cloud (OAC) instance that will be used to connect to your ADW instance.
 
 ## End-user Flow
@@ -93,7 +93,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 5. Repeat steps 3. and 4., with the JSON Collection `CLASSIFICATIONDATA` and its materialized view.
 6. Open OAC and generate a connection to your ADW instance.
 7. In OAC, create a Dataset using the materialized view, `KVEXTRACTIONDATA_MV`, e.g. called `kvextraction_dataset`.
-8. Create a workbook and experiment with visualizations for your dataset. For example:
+8. Create a Workbook and experiment with visualizations for your dataset. For example:
    1. Create a tag cloud visualization that shows the prevalence of fieldlabel and fieldvalue pairs, while using the document type as the color variable, and a custom calculation defined by the number of distinct process job ids as the size variable.
    2. Create a pie chart visualization that shows the prevalence of document types in your database using the document type as the color variable as well as the category, and your custom calculation described in 8.1 as the slice size variable.
 
