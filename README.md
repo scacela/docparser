@@ -20,20 +20,40 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 1. Within the compartment that you manage, create a new compartment, e.g. called `docparser`.
 2. Within the compartment that you manage, create an OCI Policy with statement:
   ```
-  allow any-user to manage all-resources in compartment id OCID_OF_NEW_COMPARTMENT where any {request.principal.id='OCID_OF_NEW_COMPARTMENT'}
+  allow any-user to manage all-resources in compartment id <OCID of your new compartment> where any {request.principal.id='<OCID of your new compartment>'}
   ```
-3. Within the new compartment that you created, create 3 buckets: `incoming-documents`, `classified-documents`, `sdk-results-document-analysis`.
-4. Within the new compartment that you created, create an OCI Functions Application, specifying a subnet of your choice.
-5. Turn on logs for your application, which can be used for troubleshooting.
-6. Open Cloud Shell, and establish your `fn` profile for using OCI Functions.
-7. On Cloud Shell, create a folder and navigate to the folder, e.g. `mkdir docparser; cd docparser`.
-8. Within the folder, create [func.py](./cloudfunction/func.py), [func.yaml](./cloudfunction/func.yaml), and [requirements.txt](./cloudfunction/requirements.txt) with the same content as the files from this repo.
-9. Deploy your Function to your Application.
-10. Within your new compartment, create an Event Rule with condition that includes `OBJECT_CREATE` and `OBJECT_UPDATE` as criteria, and an action that references the Function you created.
-11. Within your new compartment, create an Autonomous Data Warehouse (ADW) in your new compartment.
-12. In ADW, create 2 JSON Collections named `CLASSIFICATIONDATA` and `KVEXTRACTIONDATA`, by navigating: `ADW Launchpad > JSON`
-14. In ADW, copy the Oracle RESTful Data Services (ORDS) base URL, which will enable you to interact with your JSON Collections: `ADW Launchpad > Restful Services and SODA > Click Copy`.
-15. Assign configuration variables to your Functions Application:
+3. Within the new compartment that you created, create 3 buckets:
+   1. `incoming-documents`
+   2. `classified-documents`
+   3. `sdk-results-document-analysis`
+5. Within the new compartment that you created, create an OCI Functions Application called `docparser-app`, specifying a subnet of your choice.
+6. Turn on logs for your Application, which can be used for troubleshooting.
+7. Open Cloud Shell, and establish your `fn` profile for using OCI Functions:
+   ```
+   fn use context <your region key>
+   fn update context oracle.compartment-id <OCID of your new compartment>
+   fn update context oracle.image-compartment-id <OCID of your new compartment>
+   fn update context registry <your region key>.ocir.io/<your tenancy namespace>/docparser
+   ```
+8. Generate an authentication token and save the token to a notepad. To generate the token, navigate: `Person icon in the top-right corner of the web console > My profile > Auth tokens > Generate token`
+9. Log-in to your docker account as your OCI user:
+    ```
+    docker login -u '<your tenancy namespace>/<your username>' <your region key>.ocir.io
+    ```
+11. On Cloud Shell, create a folder and navigate to the folder, e.g. `mkdir docparser; cd docparser`.
+12. Within the folder, create the following files with the same content as in this repo:
+    1. [func.py](./cloudfunction/func.py)
+    2. [func.yaml](./cloudfunction/func.yaml)
+    3. [requirements.txt](./cloudfunction/requirements.txt)
+13. Deploy your Function to your Application.
+    ```
+    fn -v deploy --app doc-parser-app
+    ```
+15. Within your new compartment, create an Event Rule with condition that includes `OBJECT_CREATE` and `OBJECT_UPDATE` as criteria, and an action that references the Function you created.
+16. Within your new compartment, create an Autonomous Data Warehouse (ADW) in your new compartment.
+17. In ADW, create 2 JSON Collections named `CLASSIFICATIONDATA` and `KVEXTRACTIONDATA`, by navigating: `ADW Launchpad > JSON`
+18. In ADW, copy the Oracle RESTful Data Services (ORDS) base URL, which will enable you to interact with your JSON Collections: `ADW Launchpad > Restful Services and SODA > Click Copy`.
+19. Assign configuration variables to your Functions Application:
     1. **classification-json-collection-name**: `CLASSIFICATIONDATA`
     2. **kvextraction-json-collection-name**: `KVEXTRACTIONDATA`
     3. **db-user**: `admin`
@@ -45,7 +65,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
     9. **INCOMING_DOCUMENTS_STORAGE_BUCKET**: `incoming-documents`
     10. **CLASSIFIED_DOCUMENTS_STORAGE_BUCKET**: `classified-documents`
     11. **SDK_RESULTS_STORAGE_BUCKET**: `sdk-results-document-analysis`
-16. Within your new compartment, create an Oracle Analytics Cloud (OAC) instance that will be used to connect to your ADW instance.
+20. Within your new compartment, create an Oracle Analytics Cloud (OAC) instance that will be used to connect to your ADW instance.
 
 ## End-user Flow
 1. Upload document(s) into Object Storage bucket, `incoming-documents`.
