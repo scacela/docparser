@@ -6,7 +6,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
-2. [Setup steps](#setup-steps)
+2. [Setup Steps](#setup-steps)
 3. [End-user Flow](#end-user-flow)
 4. [Reset the Flow](#reset-the-flow)
 5. [Acknowledgements](#acknowledgements)
@@ -14,7 +14,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 ## Prerequistes
 * Your OCI user manages all-resources in a compartment
 
-## Setup steps
+## Setup Steps
 1. Within the compartment that you manage, create a new compartment, e.g. called `docparser`.
 2. Within the compartment that you manage, create an OCI Policy with statement:
   ```
@@ -27,7 +27,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 7. On Cloud Shell, create a folder and navigate to the folder, e.g. `mkdir docparser; cd docparser`.
 8. Within the folder, create [func.py](./OCI_Function/func.py), [func.yaml](./OCI_Function/func.yaml), and [requirements.txt](./OCI_Function/requirements.txt) with the same content as the files from this repo.
 9. Deploy your Function to your Application.
-10. Within your new compartment, create an Event Rule with condition that includes OBJECT_CREATE and OBJECT_UPDATE as criteria, and an action that references the Function you created.
+10. Within your new compartment, create an Event Rule with condition that includes `OBJECT_CREATE` and `OBJECT_UPDATE` as criteria, and an action that references the Function you created.
 11. Within your new compartment, create an Autonomous Data Warehouse (ADW) in your new compartment.
 12. In ADW, create 2 JSON Collections named `CLASSIFICATIONDATA` and `KVEXTRACTIONDATA`, by navigating: `ADW Launchpad > JSON`
 14. In ADW, copy the Oracle RESTful Data Services (ORDS) base URL, which will enable you to interact with your JSON Collections: `ADW Launchpad > Restful Services and SODA > Click Copy`.
