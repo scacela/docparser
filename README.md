@@ -4,10 +4,17 @@ Generate relational data and visualizations to easily analyze many documents
 ## Summary
 Deploy a flow that automatically classifies a document once it is loaded into Object Storage, and based on its classification type, extracts the key-value pairs from the document that are typical of its type. Then, the keys and values identified from the document are re-structured into relational data and are analytically visualized in Oracle Analytics Cloud (OAC) in an aggregation of previously loaded documents.
 
+## Table of Contents
+1. [Prerequisites](#prerequisites)
+2. [Setup steps](#setup-steps)
+3. [End-user Flow](#end-user-flow)
+4. [Reset the Flow](#reset-the-flow)
+5. [Acknowledgements](#acknowledgements)
+
 ## Prerequistes
 * Your OCI user manages all-resources in a compartment
 
-## Setup steps:
+## Setup steps
 1. Within the compartment that you manage, create a new compartment, e.g. called `docparser`.
 2. Within the compartment that you manage, create an OCI Policy with statement:
   ```
@@ -25,20 +32,20 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 12. In ADW, create 2 JSON Collections named `CLASSIFICATIONDATA` and `KVEXTRACTIONDATA`, by navigating: `ADW Launchpad > JSON`
 14. In ADW, copy the Oracle RESTful Data Services (ORDS) base URL, which will enable you to interact with your JSON Collections: `ADW Launchpad > Restful Services and SODA > Click Copy`.
 15. Assign configuration variables to your Functions Application:
-    1. `classification-json-collection-name`: `CLASSIFICATIONDATA`
-    2. `kvextraction-json-collection-name`: `KVEXTRACTIONDATA`
-    3. `db-user`: `admin`
-    4. `db-schema`: `admin`
-    5. `dbpwd-cipher`: `(use your password for the ADMIN user in your ADW instance)`
-    6. `ords-base-url`: `(use the SODA URL that you copied from ADW)`
-    7. `COMPARTMENT_OCID`: `(use the OCID of your new compartment)`
-    8. `NAMESPACE_NAME`: `(use the namespace for your Object Storage buckets)`
-    9. `INCOMING_DOCUMENTS_STORAGE_BUCKET`: `incoming-documents`
-    10. `CLASSIFIED_DOCUMENTS_STORAGE_BUCKET`: `classified-documents`
-    11. `SDK_RESULTS_STORAGE_BUCKET`: `sdk-results-document-analysis`
+    1. `**classification-json-collection-name**`: `CLASSIFICATIONDATA`
+    2. `**kvextraction-json-collection-name**`: `KVEXTRACTIONDATA`
+    3. `**db-user**`: `admin`
+    4. `**db-schema**`: `admin`
+    5. `**dbpwd-cipher**`: `(use your password for the ADMIN user in your ADW instance)`
+    6. `**ords-base-url**`: `(use the SODA URL that you copied from ADW)`
+    7. `**COMPARTMENT_OCID**`: `(use the OCID of your new compartment)`
+    8. `**NAMESPACE_NAME**`: `(use the namespace for your Object Storage buckets)`
+    9. `**INCOMING_DOCUMENTS_STORAGE_BUCKET**`: `incoming-documents`
+    10. `**CLASSIFIED_DOCUMENTS_STORAGE_BUCKET**`: `classified-documents`
+    11. `**SDK_RESULTS_STORAGE_BUCKET**`: `sdk-results-document-analysis`
 16. Within your new compartment, create an Oracle Analytics Cloud (OAC) instance that will be used to connect to your ADW instance.
 
-## End-user Flow:
+## End-user Flow
 1. Upload document(s) into Object Storage bucket, `incoming-documents`.
 2. Navigate to ADW and run the JSON Collection for `KVEXTRACTIONDATA` and `CLASSIFICATIONDATA` to see the new JSON documents that have populated.
 3. Run the statement that creates a materialized view from the JSON Collection `KVEXTRACTIONDATA` by referring to [sql.txt](./SQL/sql.txt).
@@ -50,7 +57,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
    1. Create a tag cloud visualization that shows the prevalence of fieldlabel and fieldvalue pairs, while using the document type as the color variable, and a custom calculation defined by the number of distinct process job ids as the size variable.
    2. Create a pie chart visualization that shows the prevalence of document types in your database using the document type as the color variable as well as the category, and your custom calculation described in 8.1 as the slice size variable.
 
-## Reset the Flow:
+## Reset the Flow
 1. Empty the JSON Collections, `CLASSIFICATIONDATA` and `KVEXTRACTIONDATA`.
 2. Drop the materialized views you created in step 3. of the [End-user Flow](#end-user-flow), `CLASSIFICATIONDATA_MV` and `KVEXTRACTIONDATA_MV`.
 3. Reload the dataset in OAC.
