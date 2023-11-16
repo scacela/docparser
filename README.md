@@ -27,7 +27,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 5. Turn on logs for your application, which can be used for troubleshooting.
 6. Open Cloud Shell, and establish your `fn` profile for using OCI Functions.
 7. On Cloud Shell, create a folder and navigate to the folder, e.g. `mkdir docparser; cd docparser`.
-8. Within the folder, create [func.py](./OCI_Function/func.py), [func.yaml](./OCI_Function/func.yaml), and [requirements.txt](./OCI_Function/requirements.txt) with the same content as the files from this repo.
+8. Within the folder, create [func.py](./cloudfunction/func.py), [func.yaml](./cloudfunction/func.yaml), and [requirements.txt](./cloudfunction/requirements.txt) with the same content as the files from this repo.
 9. Deploy your Function to your Application.
 10. Within your new compartment, create an Event Rule with condition that includes `OBJECT_CREATE` and `OBJECT_UPDATE` as criteria, and an action that references the Function you created.
 11. Within your new compartment, create an Autonomous Data Warehouse (ADW) in your new compartment.
@@ -50,8 +50,8 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 ## End-user Flow
 1. Upload document(s) into Object Storage bucket, `incoming-documents`.
 2. Navigate to ADW and run the JSON Collection for `KVEXTRACTIONDATA` and `CLASSIFICATIONDATA` to see the new JSON documents that have populated.
-3. Run the statement that creates a materialized view from the JSON Collection `KVEXTRACTIONDATA` by referring to [docparser.sql](./SQL/docparser.sql).
-4. Run the select statement from [docparser.sql](SQL/docparser.sql) to see the contents of the materialized view.
+3. Run the statement that creates a materialized view from the JSON Collection `KVEXTRACTIONDATA` by referring to [docparser.sql](./sql/docparser.sql).
+4. Run the select statement from [docparser.sql](sql/docparser.sql) to see the contents of the materialized view.
 5. Repeat steps 3. and 4., with the JSON Collection `CLASSIFICATIONDATA` and its materialized view.
 6. Open OAC and generate a connection to your ADW instance.
 7. In OAC, create a Dataset using the materialized view, `KVEXTRACTIONDATA_MV`, e.g. called `kvextraction_dataset`.
