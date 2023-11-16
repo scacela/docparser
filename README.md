@@ -77,7 +77,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
     3. `db-user`: `admin`
     4. `db-schema`: `admin`
     5. `dbpwd-cipher`: &lt;your password for the ADMIN user in your ADW instance&gt;
-    6. `ords-base-url`: &lt;SODA URL that you copied from ADW&gt;
+    6. `ords-base-url`: &lt;ORDS base URL that you copied from ADW&gt;
     7. `COMPARTMENT_OCID`: &lt;OCID of your new compartment&gt;
     8. `NAMESPACE_NAME`: &lt;namespace for your Object Storage buckets&gt;
     9. `INCOMING_DOCUMENTS_STORAGE_BUCKET`: `incoming-documents`
