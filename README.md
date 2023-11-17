@@ -37,7 +37,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
    1. `incoming-documents`: The user uploads documents to this bucket to trigger the rest of the flow.
    2. `classified-documents`: Documents will be copied from `incoming-documents` to this bucket, to a folder indicating the classification type associated with the document.
    3. `sdk-results-document-analysis`: The JSON analysis from the API calls will be redirected to this bucket.
-5. Within the new compartment that you created, create an OCI Functions Application called `docparser-app`, specifying a subnet of your choice.
+5. Within the new compartment that you created, create an OCI Functions Application called `doc-parser-app`, specifying a subnet of your choice.
 6. Turn on logs for your Application, which can be used for troubleshooting.
 7. Open Cloud Shell, and establish your `fn` profile for using OCI Functions:
    > **Note:** replace &lt;placeholder values&gt; with your own values.
