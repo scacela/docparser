@@ -93,7 +93,7 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 5. Repeat steps 3. and 4., with the JSON Collection `CLASSIFICATIONDATA` and its materialized view.
 6. Open OAC and generate a connection to your ADW instance.
 7. In OAC, create a Dataset using the materialized view, `KVEXTRACTIONDATA_MV`, e.g. called `kvextraction_dataset`.
-8. Create a Workbook, e.g. called `kvextraction_workbook`, and experiment with visualizations for your dataset. For example:
+8. Create a Workbook, e.g. called `kvextraction_workbook`, and experiment with visualizations for your Dataset. For example:
    1. Create a tag cloud visualization that shows the prevalence of fieldlabel and fieldvalue pairs, while using the document type as the color variable, and a custom calculation defined by the number of distinct process job ids as the size variable.
    2. Create a pie chart visualization that shows the prevalence of document types in your database using the document type as the color variable as well as the category, and your custom calculation described in 8.1 as the slice size variable.
 
