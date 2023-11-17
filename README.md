@@ -94,12 +94,18 @@ Deploy a flow that automatically classifies a document once it is loaded into Ob
 6. Open OAC and generate a connection to your ADW instance.
 7. In OAC, create a Dataset using the materialized view, `KVEXTRACTIONDATA_MV`, e.g. called `kvextraction_dataset`.
 8. Create a Workbook, e.g. called `kvextraction_workbook`, and experiment with visualizations for your Dataset. For example:
-   1. Create a Tag Cloud visualization that shows the prevalence of various key-value pairs (`FIELDLABEL` and `FIELDVALUE`, respectively) as the `Category` variable, while using the document type (`DOCUMENT_TYPE_CUSTOM`) as the `Color` variable, and a Custom Calculation defined by the number of distinct process job ids (`COUNT(DISTINCT(PROCESS_JOB_ID_CUSTOM)`) as the `Values (Size)` variable.
-   2. Create a Pie visualization that shows the prevalence of various document types in your database using the document type (`DOCUMENT_TYPE_CUSTOM`) as the `Color` and `Category` variables, and your Custom Calculation described in step 8.1 as the `Values (Slice)` variable.
+   1. Create a Tag Cloud visualization that shows the prevalence of various key-value pairs in your Dataset with the following variables:
+      1. `Category`: `FIELDLABEL`, `FIELDVALUE`
+      2. `Color`: `DOCUMENT_TYPE_CUSTOM`
+      3. `Values (Size)`: Custom Calculation defined by `COUNT(DISTINCT(PROCESS_JOB_ID_CUSTOM)`, e.g. called `count_distinct_by_process_job`
+   3. Create a Pie visualization that shows the prevalence of various document types in your Dataset with the following variables:
+      1. `Category`: `DOCUMENT_TYPE_CUSTOM`
+      2. `Color`: `DOCUMENT_TYPE_CUSTOM`
+      3. `Values (Slice)`: Custom Calculation defined by `COUNT(DISTINCT(PROCESS_JOB_ID_CUSTOM)`, e.g. called `count_distinct_by_process_job`
 
 ## Reset the Flow
 1. Empty the JSON Collections, `CLASSIFICATIONDATA` and `KVEXTRACTIONDATA`.
-2. Drop the materialized views you created in step 3. of the [End-user Flow](#end-user-flow), `CLASSIFICATIONDATA_MV` and `KVEXTRACTIONDATA_MV`.
+2. Referring to [docparser.sql](./sql/docparser.sql), drop the materialized views you created in step 3. of the [End-user Flow](#end-user-flow), `CLASSIFICATIONDATA_MV` and `KVEXTRACTIONDATA_MV`.
 3. Reload the dataset in OAC.
 
 ## Acknowledgements
